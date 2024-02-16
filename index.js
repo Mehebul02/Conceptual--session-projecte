@@ -24,10 +24,12 @@ for (const btn of allBtn) {
     totalPrice("total-cost", price);
     totalPrice("grand-total", price);
 
-    // const Buged=getValue('budget')
-    // if(budget -parseInt(price)>0){
-    //     return alert
-    // }
+    const budget=getValue('budget')
+    setInnerText('budget',budget-parseInt(price))
+    if(budget-parseInt(price)<=0){
+        alert('No Perses')
+        return
+    }
   });
 }
 

@@ -124,6 +124,7 @@ border: none;
 background-color: rgb(135, 134, 133);
 color: white;
 font-size:15px;
+cursor: pointer;
 }
 .all-cat-btn{
     padding: 10px;
