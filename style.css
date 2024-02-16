@@ -90,6 +90,7 @@ nav{
     font-size: 14px;
     color:white;
     margin-top: 15px;
+    cursor: pointer;
 }
 .cart{
     width: 100%;
