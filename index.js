@@ -1,57 +1,67 @@
+const allBtn = document.getElementsByClassName("add-btn");
+let count = 0;
+for (const btn of allBtn) {
+  btn.addEventListener("click", function halnDle(e) {
+    count += 1;
+    setInnerText("cart-count", count);
+    const selectedContainer = document.getElementById(
+      "selected-place-container"
+    );
+    const li = document.createElement("li");
+    const p1 = document.createElement("p");
+    const p2 = document.createElement("p");
+    li.appendChild(p1);
+    li.appendChild(p2);
+    selectedContainer.appendChild(li);
+    // Place Name
+    const placeName = e.target.parentNode.childNodes[1].innerText;
+    p1.innerText = placeName;
 
-const allBtn=document.getElementsByClassName('add-btn')
-let count =0
-for(const btn of allBtn){
-   btn.addEventListener('click',function halnDle (e){
-    count +=1
-    setInnerText('cart-count',count)
-    const selectedContainer=document.getElementById('selected-place-container')
-    const li =document.createElement('li')
-    const p1=document.createElement("p")
-    const p2 =document.createElement('p')
-    li.appendChild(p1)
-    li.appendChild(p2)
-    selectedContainer.appendChild(li)
-    // Place Name 
-    const placeName=e.target.parentNode.childNodes[1].innerText
-     p1.innerText=placeName
+    //  Price
+    const price = e.target.parentNode.childNodes[3].childNodes[1].innerText;
+    p2.innerText = price;
 
-    //  Price 
-    const price =e.target.parentNode.childNodes[3].childNodes[1].innerText
-    p2.innerText=price
+    totalPrice("total-cost", price);
+    totalPrice("grand-total", price);
 
-    // total cost 
-    // let sum =0
-    // const totalcost=document.getElementById('total-cost')
-
-// totalPrice('total-cost',total)
-// let total=0;
-// const totalPrice=document.getElementById('total-cost').innerText
-// const totalcost=parseInt(total)+parseInt(totalPrice);
-// console.log(totalcost.innerText)
-
-totalPrice("total-cost",price)
-  
-  
-    
-    
-
-    
-   })
+    // const Buged=getValue('budget')
+    // if(budget -parseInt(price)>0){
+    //     return alert
+    // }
+  });
 }
 
-
-// Total Price 
-function totalPrice(id,value){
-    const totalCost=document.getElementById(id).innerText;
-    const total =parseInt(totalCost)+parseInt(value)
-    document.getElementById(id).innerText=total
-
+// Total Price
+function totalPrice(id, value) {
+  const totalCost = document.getElementById(id).innerText;
+  const total = parseInt(totalCost) + parseInt(value);
+  document.getElementById(id).innerText = total;
+  grandTotal("other");
+}
+// Gran Total
+function grandTotal(category) {
+  const converter = getValue("total-cost");
+  console.log(converter);
+  if (category === "bus") {
+    setInnerText("grand-total", converter + 100);
+  } else if (category === "train") {
+    setInnerText("grand-total", converter - 200);
+  }
+  else if(category ==='flight'){
+    setInnerText("grand-total",converter + 500)
+  }
+  else{
+    setInnerText("grand-total",converter)
+  }
 }
 
-// Set InnerText 
-function setInnerText(id,value){
-    document.getElementById(id).innerText=value
-
+function getValue(id) {
+  const budgetInnerText = document.getElementById(id).innerText;
+  const budget = parseInt(budgetInnerText);
+  return budget;
 }
 
+// Set InnerText
+function setInnerText(id, value) {
+  document.getElementById(id).innerText = value;
+}
